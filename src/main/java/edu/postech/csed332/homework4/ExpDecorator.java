@@ -14,4 +14,14 @@ public class ExpDecorator extends Exp {
 
     // TODO implement all the methods of ExpDecorator
 
+    /**
+     * Performs an operation given an implementation of ExpVisitor
+     *
+     * @param visitor a visitor
+     * @return the result
+     */
+    @Override
+    public <T> T accept(ExpVisitor<T> visitor){
+        return null;
+    }
 }

@@ -36,6 +36,7 @@ class ExpTest {
     void testEquivalence() {
         Exp e1 = Exp.parseExp("1.0 + 2.0 * x1 + x1");
         Exp e2 = Exp.parseExp("1.0 + 2.0 * x1 + x1");
+        e1.equiv(e2);
         assertTrue(e1.equiv(e2));
     }
 

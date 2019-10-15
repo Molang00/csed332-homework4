@@ -1,4 +1,5 @@
 package edu.postech.csed332.homework4;
+import edu.postech.csed332.homework4.expression.*;
 
 /**
  * A visitor interface for expressions
@@ -7,4 +8,8 @@ package edu.postech.csed332.homework4;
  */
 public interface ExpVisitor<T> {
     // TODO define the visit methods for Exp
+
+    public T visitNumberExp(NumberExp cur);
+    public T visitVariableExp(VariableExp cur);
+    public T visitBinaryExp(BinaryExp curExp, String operator);
 }
