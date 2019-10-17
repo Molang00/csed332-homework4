@@ -29,6 +29,4 @@ public class ToStringVisitor implements ExpVisitor<String> {
         String rst = "("+rstLeft+" "+operator+" "+rstRight+")";
         return rst;
     }
-    @Override
-    public void sayHi(){}
 }

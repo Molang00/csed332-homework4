@@ -55,6 +55,4 @@ public class EvaluationVisitor implements ExpVisitor<Double> {
         }
         return rst;
     }
-    @Override
-    public void sayHi(){}
 }

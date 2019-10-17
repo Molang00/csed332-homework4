@@ -1,6 +1,8 @@
 package edu.postech.csed332.homework4;
 
 import edu.postech.csed332.homework4.expression.*;
+import org.jetbrains.annotations.NotNull;
+import java.util.Map;
 
 /**
  * A base decorator class
@@ -24,4 +26,8 @@ public class ExpDecorator extends Exp {
     public <T> T accept(ExpVisitor<T> visitor){
         return expression.accept(visitor);
     }
+    
+    @Override
+    @NotNull
+    public Double eval(@NotNull Map<Integer, Double> valuation)
 }

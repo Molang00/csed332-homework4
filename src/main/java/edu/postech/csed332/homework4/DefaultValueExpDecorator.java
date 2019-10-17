@@ -24,20 +24,12 @@ public class DefaultValueExpDecorator extends ExpDecorator {
         ExpVisitor<Double> visitor = new EvaluationVisitor(valuation){
             @Override
             public Double visitVariableExp(VariableExp cur){
-                System.out.println("defaultValueVisitor");
-                System.out.println(valuation);
                 if(valuation.containsKey(cur.getName())){
                     return valuation.get(cur.getName());
                 }
                 return defaultValue;
             }
-
-            @Override
-            public void sayHi(){
-                System.out.println("defaultValue");
-            }
         };
-        visitor.sayHi();
         return accept(visitor);
     }
 }

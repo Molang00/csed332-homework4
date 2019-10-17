@@ -28,13 +28,19 @@ public class EquivalenceVisitor implements ExpVisitor<Boolean> {
         Boolean rst = ((other instanceof VariableExp) && ((cur.getName()) == ((VariableExp)other).getName()));
         return rst;
     }
-    
+
+    Exp otherLeft;
+    Exp otherRight;
+
     @Override
     public Boolean visitBinaryExp(BinaryExp curExp, String operator){
         if(other instanceof BinaryExp){
             BinaryExp otherBinaryExp = (BinaryExp)other;
-            Boolean rstLeft = curExp.getLeft().equiv(otherBinaryExp.getLeft());
-            Boolean rstRight = curExp.getRight().equiv(otherBinaryExp.getRight());
+            other = otherBinaryExp.getLeft();
+            Boolean rstLeft = curExp.getLeft().accept(this);
+            other = otherBinaryExp.getRight();
+            Boolean rstRight = curExp.getRight().accept(this);
+            other = otherBinaryExp;
             Boolean rst = rstLeft && rstRight;
             switch (operator) {
                 case "+":
@@ -57,6 +63,4 @@ public class EquivalenceVisitor implements ExpVisitor<Boolean> {
         }
         else return false;
     }
-    @Override
-    public void sayHi(){}
 }

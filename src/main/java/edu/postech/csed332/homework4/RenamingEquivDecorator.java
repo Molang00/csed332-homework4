@@ -19,12 +19,11 @@ public class RenamingEquivDecorator extends ExpDecorator {
     public boolean equiv(@NotNull Exp other) {
         // TODO implement this
         ExpVisitor<Boolean> visitor = new EquivalenceVisitor(other){
-            private Map<Integer, Integer> convert = new HashMap<Integer, Integer>();
+            private Map<Integer, Integer> convert;
 
             @Override
             public Boolean visitVariableExp(VariableExp cur){
-                System.out.println("RenamingVisitor");
-                System.out.println(convert);
+                if(convert == null) convert = new HashMap<Integer, Integer>();
                 if(convert.containsKey(cur.getName())){
                     Boolean rst = ((other instanceof VariableExp) && ((convert.get(cur.getName())) == ((VariableExp)other).getName()));
                     return rst;
@@ -32,43 +31,7 @@ public class RenamingEquivDecorator extends ExpDecorator {
                 convert.put(cur.getName(), ((VariableExp)other).getName());
                 return true;
             }
-
-            @Override
-            public Boolean visitBinaryExp(BinaryExp curExp, String operator){
-                if(other instanceof BinaryExp){
-                    BinaryExp otherBinaryExp = (BinaryExp)other;
-                    Boolean rstLeft = (new RenamingEquivDecorator(curExp.getLeft())).equiv(otherBinaryExp.getLeft());
-                    Boolean rstRight = (new RenamingEquivDecorator(curExp.getRight())).equiv(otherBinaryExp.getRight());
-                    Boolean rst = rstLeft && rstRight;
-                    switch (operator) {
-                        case "+":
-                            rst = rst && (otherBinaryExp instanceof PlusExp);
-                            break;
-                        case "-":
-                            rst = rst && (otherBinaryExp instanceof MinusExp);
-                            break;
-                        case "*":
-                            rst = rst && (otherBinaryExp instanceof MultiplyExp);
-                            break;
-                        case "/":
-                            rst = rst && (otherBinaryExp instanceof DivideExp);
-                            break;
-                        case "^":
-                            rst = rst && (otherBinaryExp instanceof ExponentiationExp);
-                            break;
-                    }
-                    return rst;
-                }
-                else return false;
-            }
-
-            @Override
-            public void sayHi(){
-                System.out.println("renaming");
-            }
         };
-        
-        visitor.sayHi();
         return accept(visitor);
     }
 }
