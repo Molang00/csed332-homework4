@@ -26,8 +26,38 @@ public class ExpDecorator extends Exp {
     public <T> T accept(ExpVisitor<T> visitor){
         return expression.accept(visitor);
     }
-    
+
+    /**
+     * Returns the string representation of this expression.
+     *
+     * @return the string representation of this expression.
+     */
+    @Override
+    public String toString() {
+        return expression.toString();
+    }
+
+    /**
+     * Evaluates the value of expression, provided that the value of each variable is given in the valuation.
+     *
+     * @param valuation a valuation
+     * @return the value of the expression under the valuation
+     * @throws NoSuchElementException if there is a variable not in valuation
+     */
     @Override
     @NotNull
-    public Double eval(@NotNull Map<Integer, Double> valuation)
+    public Double eval(@NotNull Map<Integer, Double> valuation) {
+        return expression.eval(valuation);
+    }
+
+    /**
+     * Checks if a given expression is syntactically the same as this expression.
+     *
+     * @param other an expression
+     * @return true if other is syntactically the same as this expression
+     */
+    @Override
+    public boolean equiv(@NotNull Exp other) {
+        return expression.equiv(other);
+    }
 }

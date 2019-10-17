@@ -18,7 +18,7 @@ public class RenamingEquivDecorator extends ExpDecorator {
     @Override
     public boolean equiv(@NotNull Exp other) {
         // TODO implement this
-        ExpVisitor<Boolean> visitor = new EquivalenceVisitor(other){
+        EquivalenceVisitor visitor = new EquivalenceVisitor(other){
             private Map<Integer, Integer> convert;
 
             @Override

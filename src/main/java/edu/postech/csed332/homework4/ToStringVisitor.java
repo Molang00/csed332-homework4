@@ -13,6 +13,9 @@ public class ToStringVisitor implements ExpVisitor<String> {
     @Override
     public String visitNumberExp(NumberExp cur){
         String rst = cur.getValue().toString();
+        if(cur.getValue() < 0){
+            return "("+rst+")";
+        }
         return rst;
     }
 

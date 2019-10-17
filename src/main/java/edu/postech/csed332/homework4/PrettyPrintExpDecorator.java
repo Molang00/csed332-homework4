@@ -20,7 +20,7 @@ public class PrettyPrintExpDecorator extends ExpDecorator {
     @Override
     public String toString() {
         // TODO implement this
-        ExpVisitor<String> visitor = new ToStringVisitor(){
+        ToStringVisitor visitor = new ToStringVisitor(){
             @Override
             public String visitNumberExp(NumberExp cur){
                 BigDecimal big = new BigDecimal(cur.getValue());
