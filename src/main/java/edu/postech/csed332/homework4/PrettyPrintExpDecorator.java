@@ -1,6 +1,9 @@
 package edu.postech.csed332.homework4;
 
-import edu.postech.csed332.homework4.expression.Exp;
+import edu.postech.csed332.homework4.expression.*;
+
+import java.math.BigDecimal;
+
 import org.jetbrains.annotations.NotNull;
 
 /**
@@ -17,7 +20,14 @@ public class PrettyPrintExpDecorator extends ExpDecorator {
     @Override
     public String toString() {
         // TODO implement this
-        return null;
+        ExpVisitor<String> visitor = new ToStringVisitor(){
+            @Override
+            public String visitNumberExp(NumberExp cur){
+                BigDecimal big = new BigDecimal(cur.getValue());
+                return big.toPlainString();
+            }
+        };
+        return accept(visitor);
     }
 
 }

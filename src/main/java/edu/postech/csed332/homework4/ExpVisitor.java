@@ -12,4 +12,5 @@ public interface ExpVisitor<T> {
     public T visitNumberExp(NumberExp cur);
     public T visitVariableExp(VariableExp cur);
     public T visitBinaryExp(BinaryExp curExp, String operator);
+    public void sayHi();
 }

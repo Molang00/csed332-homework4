@@ -31,8 +31,8 @@ public class EvaluationVisitor implements ExpVisitor<Double> {
     
     @Override
     public Double visitBinaryExp(BinaryExp curExp, String operator){
-        Double rstLeft = curExp.getLeft().eval(valuation);
-        Double rstRight = curExp.getRight().eval(valuation);
+        Double rstLeft = curExp.getLeft().accept(this);
+        Double rstRight = curExp.getRight().accept(this);
         Double rst;
         switch (operator) {
             case "+":
@@ -55,4 +55,6 @@ public class EvaluationVisitor implements ExpVisitor<Double> {
         }
         return rst;
     }
+    @Override
+    public void sayHi(){}
 }

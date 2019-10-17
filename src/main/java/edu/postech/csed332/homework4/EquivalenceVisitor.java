@@ -57,4 +57,6 @@ public class EquivalenceVisitor implements ExpVisitor<Boolean> {
         }
         else return false;
     }
+    @Override
+    public void sayHi(){}
 }

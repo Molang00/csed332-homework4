@@ -1,6 +1,6 @@
 package edu.postech.csed332.homework4;
 
-import edu.postech.csed332.homework4.expression.Exp;
+import edu.postech.csed332.homework4.expression.*;
 
 /**
  * A base decorator class
@@ -22,6 +22,6 @@ public class ExpDecorator extends Exp {
      */
     @Override
     public <T> T accept(ExpVisitor<T> visitor){
-        return null;
+        return expression.accept(visitor);
     }
 }

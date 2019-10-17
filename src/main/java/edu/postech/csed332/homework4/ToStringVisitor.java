@@ -24,9 +24,11 @@ public class ToStringVisitor implements ExpVisitor<String> {
     
     @Override
     public String visitBinaryExp(BinaryExp curExp, String operator){
-        String rstLeft = curExp.getLeft().toString();
-        String rstRight = curExp.getRight().toString();
+        String rstLeft = curExp.getLeft().accept(this);
+        String rstRight = curExp.getRight().accept(this);
         String rst = "("+rstLeft+" "+operator+" "+rstRight+")";
         return rst;
     }
+    @Override
+    public void sayHi(){}
 }
